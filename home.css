@@ -1,50 +1,52 @@
-body{
-    background: white;
-    margin: 0;
-}
-.header{
-    background: #FFB6A3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 500px;width: 100%;
-}
-.main{
-    display: flex;
-    height: 800px;
-    justify-content: center;
-    align-items: center;
+@media (max-width: 1080px){
+    body{
+        background: white;
+        margin: 0;
+    }
+    .header{
+        background: #FFB6A3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 500px;width: 100%;
+    }
+    .main{
+        display: flex;
+        height: 800px;
+        justify-content: center;
+        align-items: center;
 
-    /* 讓花相對於 main 漂動 */
-    position: relative;
-    overflow: hidden;
-}
-.word{
-    z-index: 15;
-    font-size: 14pt;
-    line-height: 2;
-}
-.board{
-    position: relative;
-    top: 10px;right: 0;
-    border-radius: 20px;
-    height: 400px;width: 70%;
-    backdrop-filter: blur(10px);
-    z-index: 10;
-    padding: 30px;
-}
-.flower{
-    height: 150px;
-    width: 150px;
-    position: absolute;
-    z-index: 0;
+        /* 讓花相對於 main 漂動 */
+        position: relative;
+        overflow: hidden;
+    }
+    .word{
+        z-index: 15;
+        font-size: 14pt;
+        line-height: 2;
+    }
+    .board{
+        position: relative;
+        top: 10px;right: 0;
+        border-radius: 20px;
+        height: 400px;width: 70%;
+        backdrop-filter: blur(10px);
+        z-index: 10;
+        padding: 30px;
+    }
+    .flower{
+        height: 150px;
+        width: 150px;
+        position: absolute;
+        z-index: 0;
 
-    /* 效能優化 */
-    will-change: transform, left, top;
-    pointer-events: none;
-}
-.ch {
-    position: absolute;
-    bottom:0px;
-    z-index: 0;
+        /* 效能優化 */
+        will-change: transform, left, top;
+        pointer-events: none;
+    }
+    .ch {
+        position: absolute;
+        bottom:0px;
+        z-index: 0;
+    }
 }
