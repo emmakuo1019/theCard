@@ -3,8 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <title>HelloAgain</title>
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
-
+<header class="header">
+    <img src="img/插圖2.png" height="300" width="400"/>
+</header>
+<main class="main">
+    <div class="board">
+        <div class="word">
+            好久不見ㄌ兩位
+            很高興我們能夠記得彼此， 很高興我們不會再只是兒時的玩伴，
+            而是能夠把這些美好的繼續延伸。<br>
+            今天能夠跟你們出來玩我超開心的，在升上國中我們各自讀了不同學校，走向不同的道路後，
+            肯定會有截然不同的故事吧，很期待聽到你們分享！<br>
+            嗚...其實我也不曉得該怎麼說，但我真的很想你們 TT，中見居然還失聯了這麼長一段時間，謝天謝地我們都沒有放棄<br>
+            祝 我們友誼長存 兩位天天開心
+        </div>
+    </div>
+    <img class="flower" style="right: 50%" src="img/flower3.png" height="200" width="200"/>
+    <img class="flower" style="top:400px;left: 50px"  src="img/flower1.png" height="200" width="200"/>
+    <img class="flower" style="top:100px" src="img/flower2.png" height="200" width="200"/>
+    <img class="flower" style="top:600px;right: 100px" src="img/flower2.png" height="200" width="200"/>
+    
+    <img class="ch" style="right: 60%" src="img/ch.png" height="300" width="400"/>
+    <img class="ch" style="left: 60%" src="img/ch2.png" height="300" width="400"/>
+</main>
 </body>
+<script>
+    (function(){
+        const container = document.querySelector('.main');
+        const flowers = Array.from(container.querySelectorAll('.flower'));
+        if (!flowers.length) return;
+
+        let containerRect = container.getBoundingClientRect();
+
+        // 為每朵花設定漂浮參數
+        const items = flowers.map(el => {
+            const rect = el.getBoundingClientRect();
+            const startX = rect.left - containerRect.left;
+            const startY = rect.top - containerRect.top;
+            return {
+                el,
+                baseX: startX,
+                baseY: startY,
+                ampX: 20 + Math.random()*40,   // 左右漂浮範圍小
+                ampY: 10 + Math.random()*20,   // 上下漂浮範圍更小
+                speedX: 0.0002 + Math.random()*0.0004, // 慢速左右
+                speedY: 0.0003 + Math.random()*0.0005, // 慢速上下
+                rotAmp: 3 + Math.random()*3,   // 輕微旋轉
+                rotSpeed: 0.0005 + Math.random()*0.0005,
+                offset: Math.random()*10000
+            };
+        });
+
+        function animate(t){
+            items.forEach(it=>{
+                const x = it.baseX + Math.sin(t*it.speedX + it.offset) * it.ampX;
+                const y = it.baseY + Math.cos(t*it.speedY + it.offset) * it.ampY;
+                const rot = Math.sin(t*it.rotSpeed + it.offset) * it.rotAmp;
+
+                it.el.style.left = x + 'px';
+                it.el.style.top  = y + 'px';
+                it.el.style.transform = `rotate(${rot}deg)`;
+            });
+            requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+
+        // 窗口大小變化時更新容器
+        window.addEventListener('resize', ()=>{
+            containerRect = container.getBoundingClientRect();
+        });
+    })();
+</script>
 </html>
